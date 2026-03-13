@@ -156,22 +156,16 @@ function App() {
   // Handle YES clicks
   const handleYesClick = () => {
     if (!accepted) {
-      // start fake loading
       setLoading(true);
-
       setTimeout(() => {
         setAchievement("🏆 Achievement Unlocked: Girlfriend Acquired");
+        setCoins((prev) => prev + 50); // earn coins!
+        setTimeout(() => setAchievement(null), 4000);
 
-        setTimeout(() => {
-          setAchievement(null);
-        }, 4000);
-
-        // play sound
         const sound = new Audio(duckRick);
         sound.play();
-
         jsConfetti.addConfetti({
-          emojis: ["🦆"],
+          emojis: ["🦆", "💖"],
           confettiNumber: 200,
           emojiSize: 50,
         });
@@ -179,18 +173,25 @@ function App() {
         setAccepted(true);
         setYesSize(1);
         setYesIndex(0);
-
         setLoading(false);
-      }, 5000); // 2 seconds fake loading
+      }, 5000);
     } else {
-      // cycle YES images after accepted
       setYesIndex((prev) => (prev < yesImages.length - 1 ? prev + 1 : 0));
+
+      // earn coins and show pop-up
+      setCoins((prev) => prev + 5);
+      showCoinNotification("💛 You earned 5 affection coins!");
     }
   };
 
   const showNotification = (message) => {
     setNotification(message);
     setTimeout(() => setNotification(null), 3000);
+  };
+
+  const showCoinNotification = (message) => {
+    setAchievement(message); // reuse achievement state
+    setTimeout(() => setAchievement(null), 3000); // hide after 3s
   };
 
   const buyItem = (price) => {

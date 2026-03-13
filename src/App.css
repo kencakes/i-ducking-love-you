@@ -296,3 +296,15 @@
     opacity: 0;
   }
 }
+
+.achievement {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #222;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  animation: slideIn 0.5s ease;
+  z-index: 2000;
+}
