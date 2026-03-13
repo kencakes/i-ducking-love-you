@@ -114,6 +114,7 @@ function App() {
   const [coins, setCoins] = useState(100);
   const [achievement, setAchievement] = useState(null);
   const [notification, setNotification] = useState(null);
+  const [actionsOpen, setActionsOpen] = useState(false);
 
   useEffect(() => {
     if (loading && lineIndex < loadingLines.length) {
@@ -194,6 +195,25 @@ function App() {
     setTimeout(() => setAchievement(null), 3000); // hide after 3s
   };
 
+  const earnAffection = (actionName, coinsEarned) => {
+    setCoins((prev) => prev + coinsEarned);
+
+    // Show bottom-right notification like achievements
+    setAchievement(
+      `💛 He did "${actionName}" and earned you ${coinsEarned} coins!`,
+    );
+    setTimeout(() => setAchievement(null), 3000);
+
+    // Optional: play sound or confetti for fun
+    const sound = new Audio(duckToy); // or macQuack, etc.
+    sound.play();
+    jsConfetti.addConfetti({
+      emojis: ["🦆", "💖"],
+      confettiNumber: 50,
+      emojiSize: 30,
+    });
+  };
+
   const buyItem = (price) => {
     if (coins >= price) {
       setCoins(coins - price);
@@ -266,7 +286,6 @@ function App() {
           <button className="button-yes" onClick={handleYesClick}>
             YES
           </button>
-
           <button
             className="shop-button"
             onClick={() => setShopOpen(!shopOpen)}
@@ -274,8 +293,15 @@ function App() {
             Shop
           </button>
 
-          {achievement && <div className="achievement">{achievement}</div>}
+          {/* ← Place actions panel here */}
+          <button
+            className="shop-button"
+            onClick={() => setActionsOpen(!actionsOpen)}
+          >
+            Actions
+          </button>
 
+          {achievement && <div className="achievement">{achievement}</div>}
           {shopOpen && (
             <div className="shop-overlay">
               <div className="shop-modal">
@@ -316,6 +342,57 @@ function App() {
                     <p>+5 gym motivation</p>
                     <p>Cost: 25 🪙</p>
                     <button onClick={() => buyItem(25)}>Buy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {actionsOpen && (
+            <div className="shop-overlay">
+              <div className="shop-modal">
+                <button
+                  className="close-shop"
+                  onClick={() => setActionsOpen(false)}
+                >
+                  ✖
+                </button>
+
+                <h2>Making Bank</h2>
+                <p>Do things for affection coins</p>
+
+                <div className="shop-items">
+                  <div className="shop-item">
+                    <h3>Spiderman me</h3>
+                    <p>+ 300 affection</p>
+                    <button onClick={() => earnAffection("Hug", 300)}>
+                      Do
+                    </button>
+                  </div>
+
+                  <div className="shop-item">
+                    <h3>Playing with your good girl</h3>
+                    <p>+ 200 affection</p>
+                    <button
+                      onClick={() => earnAffection("Protein Pancake", 200)}
+                    >
+                      Do
+                    </button>
+                  </div>
+
+                  <div className="shop-item">
+                    <h3>Bicep Chokehold</h3>
+                    <p>+100 Affection</p>
+                    <button onClick={() => earnAffection("Play Game", 100)}>
+                      Do
+                    </button>
+                  </div>
+
+                  <div className="shop-item">
+                    <h3>Bicep Food</h3>
+                    <p>+150 Affection</p>
+                    <button onClick={() => earnAffection("Compliment", 150)}>
+                      Do
+                    </button>
                   </div>
                 </div>
               </div>

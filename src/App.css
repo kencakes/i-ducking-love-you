@@ -308,3 +308,31 @@
   animation: slideIn 0.5s ease;
   z-index: 2000;
 }
+
+/* Eearn Affection */
+.actions-panel {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.action-buttons button {
+  background: #ffcc66;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.action-buttons button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
