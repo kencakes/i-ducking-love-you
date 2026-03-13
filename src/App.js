@@ -290,7 +290,7 @@ function App() {
             className="shop-button"
             onClick={() => setShopOpen(!shopOpen)}
           >
-            Shop
+            SHOP
           </button>
 
           {/* ← Place actions panel here */}
@@ -298,7 +298,7 @@ function App() {
             className="shop-button"
             onClick={() => setActionsOpen(!actionsOpen)}
           >
-            Actions
+            EARN
           </button>
 
           {achievement && <div className="achievement">{achievement}</div>}
