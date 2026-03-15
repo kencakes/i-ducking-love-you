@@ -111,10 +111,13 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [lineIndex, setLineIndex] = useState(0);
   const [shopOpen, setShopOpen] = useState(false);
-  const [coins, setCoins] = useState(100);
   const [achievement, setAchievement] = useState(null);
   const [notification, setNotification] = useState(null);
   const [actionsOpen, setActionsOpen] = useState(false);
+  const [coins, setCoins] = useState(() => {
+    const savedCoins = localStorage.getItem("coins");
+    return savedCoins ? parseInt(savedCoins) : 100;
+  });
 
   useEffect(() => {
     if (loading && lineIndex < loadingLines.length) {
@@ -122,6 +125,10 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [lineIndex, loading]);
+
+  useEffect(() => {
+    localStorage.setItem("coins", coins);
+  }, [coins]);
 
   const handleNoHover = (e) => {
     if (step === noMessages.length - 1) {
