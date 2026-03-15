@@ -202,6 +202,21 @@ function App() {
     setTimeout(() => setAchievement(null), 3000); // hide after 3s
   };
 
+  const sendDiscordNotification = async (itemName, price) => {
+    await fetch(
+      "https://discord.com/api/webhooks/1482884964667232408/thTeKYsZ46EA1iI1Rh00Uqjs-U9QZDyMHjPdwvdzG-k39MMWZIAwo6bJpG0bENuLwV4i",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: `🦆 Someone bought **${itemName}** for ${price} coins!`,
+        }),
+      },
+    );
+  };
+
   const earnAffection = (actionName, coinsEarned) => {
     setCoins((prev) => prev + coinsEarned);
 
@@ -221,9 +236,10 @@ function App() {
     });
   };
 
-  const buyItem = (price) => {
+  const buyItem = (itemName, price) => {
     if (coins >= price) {
       setCoins(coins - price);
+      sendDiscordNotification(itemName, price);
       showNotification("💖 Item purchased!");
       jsConfetti.addConfetti({
         emojis: ["🦆", "💖"],
@@ -327,28 +343,36 @@ function App() {
                     <h3>Unlimited Hugs</h3>
                     <p>+10 affection</p>
                     <p>Cost: 30 🪙</p>
-                    <button onClick={() => buyItem(30)}>Buy</button>
+                    <button onClick={() => buyItem("Unlimited Hugs", 30)}>
+                      Buy
+                    </button>
                   </div>
 
                   <div className="shop-item">
                     <h3>Unlimited Kisses</h3>
                     <p>+10 affection</p>
                     <p>Cost: 80 🪙</p>
-                    <button onClick={() => buyItem(80)}>Buy</button>
+                    <button onClick={() => buyItem("Unlimited Kisses", 80)}>
+                      Buy
+                    </button>
                   </div>
 
                   <div className="shop-item">
                     <h3>Gaming Carry</h3>
                     <p>+ Revives + Damage</p>
                     <p>Cost: 50 🪙</p>
-                    <button onClick={() => buyItem(50)}>Buy</button>
+                    <button onClick={() => buyItem("Gaming Carry", 50)}>
+                      Buy
+                    </button>
                   </div>
 
                   <div className="shop-item">
                     <h3>Protein Pancakes</h3>
                     <p>+5 gym motivation</p>
                     <p>Cost: 25 🪙</p>
-                    <button onClick={() => buyItem(25)}>Buy</button>
+                    <button onClick={() => buyItem("Protein Pancakes", 25)}>
+                      Buy
+                    </button>
                   </div>
                 </div>
               </div>
