@@ -33,9 +33,9 @@ export default function DailyCompliment() {
   if (!compliment) return null;
 
   return (
-    <div className="daily-compliment">
-      <div className="compliment-header">✨ Daily Compliment:</div>
-      <div className="compliment-text">{compliment}</div>
+    <div className="daily-notification">
+      <div className="daily-notification-header">✨ Daily Compliment:</div>
+      <div className="daily-notification-text">{compliment}</div>
     </div>
   );
 }

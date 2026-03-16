@@ -354,10 +354,7 @@
 }
 
 /* Compliment */
-.daily-compliment {
-  position: fixed;
-  top: 70px; /* just below coin counter at 20px + 50px height */
-  right: 20px;
+.daily-notification {
   background: white;
   padding: 10px 15px;
   border-radius: 12px;
@@ -368,6 +365,16 @@
   text-align: center;
 }
 
-.compliment-text {
+.daily-notification-text {
   font-weight: normal;
+}
+
+.daily-container {
+  position: fixed;
+  top: 70px; /* below coin counter */
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* space between boxes */
+  z-index: 1000;
 }

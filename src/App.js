@@ -48,6 +48,7 @@ import duckRick from "./audio/rick-duck.mp3";
 
 import CasinoModal from "./components/casino/CasinoModal";
 import DailyCompliment from "./components/DailyCompliment";
+import DailyDuckFact from "./components/DailyDuckFact";
 
 // NO messages + corresponding images
 const noMessages = [
@@ -338,7 +339,10 @@ function App() {
       {accepted && (
         <div className="yes-only-container">
           <div className="coin-counter">🪙 Affection Coins: {coins}</div>
-          <DailyCompliment />
+          <div className="daily-container">
+            <DailyCompliment />
+            <DailyDuckFact />
+          </div>
 
           <button className="button-yes" onClick={handleYesClick}>
             YES
