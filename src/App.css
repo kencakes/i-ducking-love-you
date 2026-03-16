@@ -192,6 +192,7 @@
   border-radius: 12px;
   font-weight: bold;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  z-index: 1000; /* ensure on top */
 }
 
 .duck-background span {
@@ -352,3 +353,21 @@
   border-radius: 10px;
 }
 
+/* Compliment */
+.daily-compliment {
+  position: fixed;
+  top: 70px; /* just below coin counter at 20px + 50px height */
+  right: 20px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-width: 220px;
+  text-align: center;
+}
+
+.compliment-text {
+  font-weight: normal;
+}

@@ -47,6 +47,7 @@ import macQuack from "./audio/mac-quack.mp3";
 import duckRick from "./audio/rick-duck.mp3";
 
 import CasinoModal from "./components/casino/CasinoModal";
+import DailyCompliment from "./components/DailyCompliment";
 
 // NO messages + corresponding images
 const noMessages = [
@@ -337,6 +338,8 @@ function App() {
       {accepted && (
         <div className="yes-only-container">
           <div className="coin-counter">🪙 Affection Coins: {coins}</div>
+          <DailyCompliment />
+
           <button className="button-yes" onClick={handleYesClick}>
             YES
           </button>
@@ -346,7 +349,6 @@ function App() {
           >
             SHOP
           </button>
-
           {/* ← Place actions panel here */}
           <button
             className="shop-button"
@@ -354,14 +356,12 @@ function App() {
           >
             EARN
           </button>
-
           <button
             className="shop-button"
             onClick={() => setCasinoOpen(!casinoOpen)}
           >
             CASINO
           </button>
-
           {achievement && <div className="achievement">{achievement}</div>}
           {shopOpen && (
             <div className="shop-overlay">
