@@ -46,6 +46,8 @@ import duckToy from "./audio/duck-toy.mp3";
 import macQuack from "./audio/mac-quack.mp3";
 import duckRick from "./audio/rick-duck.mp3";
 
+import CasinoModal from "./components/casino/CasinoModal";
+
 // NO messages + corresponding images
 const noMessages = [
   { noText: "NO?!", img: duckPoint },
@@ -117,9 +119,6 @@ function App() {
   const [casinoOpen, setCasinoOpen] = useState(false);
   const [jackpot, setJackpot] = useState(500);
   const [winStreak, setWinStreak] = useState(0);
-  const [slots, setSlots] = useState(["❓", "❓", "❓"]);
-  const [spinning, setSpinning] = useState(false);
-  const slotSymbols = ["🦆", "💖", "🪙", "💀"];
   const [coins, setCoins] = useState(() => {
     const savedCoins = localStorage.getItem("coins");
     return savedCoins ? parseInt(savedCoins) : 100;
@@ -173,102 +172,6 @@ function App() {
     if (step < noMessages.length - 1) {
       setStep((prev) => prev + 1);
       setYesSize((prev) => prev + 1);
-    }
-  };
-
-  const spinSlots = (bet) => {
-    if (coins < bet || spinning) {
-      showNotification("Not enough coins or already spinning!");
-      return;
-    }
-
-    setCoins((prev) => prev - bet);
-    setJackpot((prev) => prev + 10);
-    setSpinning(true);
-
-    // fake spinning animation
-    let spins = 0;
-    const spinInterval = setInterval(() => {
-      setSlots([
-        slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
-        slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
-        slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
-      ]);
-
-      spins++;
-
-      if (spins > 10) {
-        clearInterval(spinInterval);
-
-        const final = [
-          slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
-          slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
-          slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
-        ];
-
-        setSlots(final);
-        setSpinning(false);
-
-        // win logic
-        if (final[0] === "🦆" && final[1] === "🦆" && final[2] === "🦆") {
-          setCoins((prev) => prev + jackpot);
-          showNotification(`🎉 MEGA JACKPOT! You won ${jackpot} coins!`);
-          setJackpot(200);
-          setWinStreak((prev) => prev + 1);
-        } else if (final[0] === final[1] && final[1] === final[2]) {
-          const reward = bet * 3;
-          setCoins((prev) => prev + reward);
-          showNotification(`🎉 Triple match! +${reward}`);
-          setWinStreak((prev) => prev + 1);
-        } else {
-          showNotification("💀 No match. Better luck next time!");
-          setWinStreak(0);
-        }
-      }
-    }, 100);
-  };
-
-  const doubleOrNothing = (bet) => {
-    if (coins < bet) {
-      showNotification("Not enough coins!");
-      return;
-    }
-
-    const win = Math.random() < 0.5;
-
-    if (win) {
-      const reward = bet * 2;
-      setCoins((prev) => prev + reward);
-      setWinStreak((prev) => prev + 1);
-      showNotification(`🔥 DOUBLE! +${reward}`);
-    } else {
-      setCoins((prev) => prev - bet);
-      setWinStreak(0);
-      showNotification("💀 Nothing...");
-    }
-  };
-
-  const roulette = (bet) => {
-    if (coins < bet) return;
-
-    setCoins((prev) => prev - bet);
-
-    const roll = Math.random();
-
-    if (roll < 0.05) {
-      const reward = bet * 10 * (winStreak >= 3 ? 2 : 1);
-      setCoins((prev) => prev + reward);
-      setWinStreak((prev) => prev + 1);
-      showNotification("🎉 MEGA WIN!");
-    } else if (roll < 0.25) {
-      setCoins((prev) => prev + bet * 3);
-      showNotification("🦆 Big win!");
-    } else if (roll < 0.6) {
-      setCoins((prev) => prev + bet);
-      showNotification("🙂 Break even");
-    } else {
-      setWinStreak(0);
-      showNotification("💀 Lost!");
     }
   };
 
@@ -564,63 +467,17 @@ function App() {
               </div>
             </div>
           )}
-          {casinoOpen && (
-            <div className="shop-overlay">
-              <div className="shop-modal">
-                <button
-                  className="close-shop"
-                  onClick={() => setCasinoOpen(false)}
-                >
-                  ✖
-                </button>
-
-                <h2>Duck Casino</h2>
-                <p>Risk your affection coins</p>
-
-                <h3 className="jackpot">Jackpot: {jackpot} 🪙</h3>
-                <p>Win Streak: {winStreak}</p>
-
-                <div className="shop-items">
-                  {/* SLOT MACHINE */}
-                  <div className="shop-item">
-                    <h3>Slot Machine</h3>
-
-                    <div className="slots">
-                      {slots.map((s, i) => (
-                        <span key={i} className="slot">
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-
-                    <button onClick={() => spinSlots(50)} disabled={spinning}>
-                      Spin 50 🪙
-                    </button>
-                  </div>
-
-                  {/* COIN FLIP GAMBLE */}
-                  <div className="shop-item">
-                    <h3>Coin Flip</h3>
-                    <p>50% chance to double your bet</p>
-
-                    <button onClick={() => gambleCoins(50)}>Bet 50 🪙</button>
-                  </div>
-
-                  <div className="shop-item">
-                    <h3>Double or Nothing</h3>
-                    <button onClick={() => doubleOrNothing(100)}>
-                      Bet 100 🪙
-                    </button>
-                  </div>
-
-                  <div className="shop-item">
-                    <h3>Roulette</h3>
-                    <button onClick={() => roulette(50)}>Spin 50 🪙</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          <CasinoModal
+            casinoOpen={casinoOpen}
+            setCasinoOpen={setCasinoOpen}
+            coins={coins}
+            setCoins={setCoins}
+            jackpot={jackpot}
+            setJackpot={setJackpot}
+            winStreak={winStreak}
+            setWinStreak={setWinStreak}
+            showNotification={showNotification}
+          />
         </div>
       )}
     </div>
