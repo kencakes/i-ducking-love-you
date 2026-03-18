@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/i-ducking-love-you/static/css/main.7d932392.css",
-    "main.js": "/i-ducking-love-you/static/js/main.c433afd0.js",
+    "main.css": "/i-ducking-love-you/static/css/main.107953ff.css",
+    "main.js": "/i-ducking-love-you/static/js/main.44f7ba81.js",
     "static/js/453.046630d3.chunk.js": "/i-ducking-love-you/static/js/453.046630d3.chunk.js",
     "static/media/no-duck-6.png": "/i-ducking-love-you/static/media/no-duck-6.6c61e3923923ddac39d2.png",
     "static/media/yes-duck-10.png": "/i-ducking-love-you/static/media/yes-duck-10.e28282df44ac1d1a6420.png",
@@ -12,10 +12,12 @@
     "static/media/no-duck-18.png": "/i-ducking-love-you/static/media/no-duck-18.c3bd70076bed2de39dd9.png",
     "static/media/no-duck-11.gif": "/i-ducking-love-you/static/media/no-duck-11.04b0c5b000f88203a51b.gif",
     "static/media/rick-duck.mp3": "/i-ducking-love-you/static/media/rick-duck.9c7cd6ad6bb21b5ba95d.mp3",
+    "static/media/memory1.jpg": "/i-ducking-love-you/static/media/memory1.211b656b52deedc026fb.jpg",
     "static/media/yes-duck-13.png": "/i-ducking-love-you/static/media/yes-duck-13.2c336aa98c57f3930dae.png",
     "static/media/yes-duck-9.png": "/i-ducking-love-you/static/media/yes-duck-9.8e779b7a2b66e4c2bacd.png",
     "static/media/no-duck-14.png": "/i-ducking-love-you/static/media/no-duck-14.06e9e20833b77a916a5b.png",
     "static/media/donald-duck.mp3": "/i-ducking-love-you/static/media/donald-duck.07a022182e6135e4d61e.mp3",
+    "static/media/memory2.jpg": "/i-ducking-love-you/static/media/memory2.38c57cfd0c50800290f2.jpg",
     "static/media/no-duck-9.png": "/i-ducking-love-you/static/media/no-duck-9.47cc007ab0665e5d4589.png",
     "static/media/no-duck-2.jpg": "/i-ducking-love-you/static/media/no-duck-2.53b44cc794251199c8f8.jpg",
     "static/media/yes-duck-11.jpg": "/i-ducking-love-you/static/media/yes-duck-11.357e32ab941612353071.jpg",
@@ -37,12 +39,12 @@
     "static/media/yes-duck-4.png": "/i-ducking-love-you/static/media/yes-duck-4.ccb4011a863e0541993a.png",
     "static/media/no-duck-7.jpg": "/i-ducking-love-you/static/media/no-duck-7.8971d486f248bd4d9d5b.jpg",
     "index.html": "/i-ducking-love-you/index.html",
-    "main.7d932392.css.map": "/i-ducking-love-you/static/css/main.7d932392.css.map",
-    "main.c433afd0.js.map": "/i-ducking-love-you/static/js/main.c433afd0.js.map",
+    "main.107953ff.css.map": "/i-ducking-love-you/static/css/main.107953ff.css.map",
+    "main.44f7ba81.js.map": "/i-ducking-love-you/static/js/main.44f7ba81.js.map",
     "453.046630d3.chunk.js.map": "/i-ducking-love-you/static/js/453.046630d3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d932392.css",
-    "static/js/main.c433afd0.js"
+    "static/css/main.107953ff.css",
+    "static/js/main.44f7ba81.js"
   ]
 }
