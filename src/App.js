@@ -47,8 +47,11 @@ import macQuack from "./audio/mac-quack.mp3";
 import duckRick from "./audio/rick-duck.mp3";
 
 import CasinoModal from "./components/casino/CasinoModal";
+import MemoriesModal from "./components/memories/MemoriesModal";
 import DailyCompliment from "./components/DailyCompliment";
 import DailyDuckFact from "./components/DailyDuckFact";
+
+import { memories } from "./data/data";
 
 // NO messages + corresponding images
 const noMessages = [
@@ -121,6 +124,7 @@ function App() {
   const [casinoOpen, setCasinoOpen] = useState(false);
   const [jackpot, setJackpot] = useState(500);
   const [winStreak, setWinStreak] = useState(0);
+  const [memoriesOpen, setMemoriesOpen] = useState(false);
   const [coins, setCoins] = useState(() => {
     const savedCoins = localStorage.getItem("coins");
     return savedCoins ? parseInt(savedCoins) : 100;
@@ -366,6 +370,12 @@ function App() {
           >
             CASINO
           </button>
+          <button
+            className="shop-button"
+            onClick={() => setMemoriesOpen(!memoriesOpen)}
+          >
+            MEMORIES
+          </button>
           {achievement && <div className="achievement">{achievement}</div>}
           {shopOpen && (
             <div className="shop-overlay">
@@ -484,6 +494,11 @@ function App() {
           />
         </div>
       )}
+      <MemoriesModal
+        memoriesOpen={memoriesOpen}
+        setMemoriesOpen={setMemoriesOpen}
+        memories={memories}
+      />
     </div>
   );
 }
