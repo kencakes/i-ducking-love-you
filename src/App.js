@@ -50,6 +50,7 @@ import CasinoModal from "./components/casino/CasinoModal";
 import MemoriesModal from "./components/memories/MemoriesModal";
 import DailyCompliment from "./components/DailyCompliment";
 import DailyDuckFact from "./components/DailyDuckFact";
+import Countdown from "./components/Countdown";
 
 import { memories } from "./data/data";
 
@@ -125,6 +126,7 @@ function App() {
   const [jackpot, setJackpot] = useState(500);
   const [winStreak, setWinStreak] = useState(0);
   const [memoriesOpen, setMemoriesOpen] = useState(false);
+  const belgianTargetDate = new Date(2026, 3, 11, 0, 0, 0);
   const [coins, setCoins] = useState(() => {
     const savedCoins = localStorage.getItem("coins");
     return savedCoins ? parseInt(savedCoins) : 100;
@@ -346,6 +348,7 @@ function App() {
           <div className="daily-container">
             <DailyCompliment />
             <DailyDuckFact />
+            <Countdown targetDate={belgianTargetDate} />
           </div>
 
           <button className="button-yes" onClick={handleYesClick}>
