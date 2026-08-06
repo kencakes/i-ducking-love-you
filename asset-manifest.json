@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/i-ducking-love-you/static/css/main.aefae74a.css",
-    "main.js": "/i-ducking-love-you/static/js/main.eefd7d8b.js",
+    "main.css": "/i-ducking-love-you/static/css/main.e35831a2.css",
+    "main.js": "/i-ducking-love-you/static/js/main.bc792671.js",
     "static/js/453.046630d3.chunk.js": "/i-ducking-love-you/static/js/453.046630d3.chunk.js",
     "static/media/no-duck-6.png": "/i-ducking-love-you/static/media/no-duck-6.6c61e3923923ddac39d2.png",
     "static/media/memory3.jpg": "/i-ducking-love-you/static/media/memory3.ec3d824efda2aa3c58e7.jpg",
@@ -40,12 +40,12 @@
     "static/media/yes-duck-4.png": "/i-ducking-love-you/static/media/yes-duck-4.ccb4011a863e0541993a.png",
     "static/media/no-duck-7.jpg": "/i-ducking-love-you/static/media/no-duck-7.8971d486f248bd4d9d5b.jpg",
     "index.html": "/i-ducking-love-you/index.html",
-    "main.aefae74a.css.map": "/i-ducking-love-you/static/css/main.aefae74a.css.map",
-    "main.eefd7d8b.js.map": "/i-ducking-love-you/static/js/main.eefd7d8b.js.map",
+    "main.e35831a2.css.map": "/i-ducking-love-you/static/css/main.e35831a2.css.map",
+    "main.bc792671.js.map": "/i-ducking-love-you/static/js/main.bc792671.js.map",
     "453.046630d3.chunk.js.map": "/i-ducking-love-you/static/js/453.046630d3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aefae74a.css",
-    "static/js/main.eefd7d8b.js"
+    "static/css/main.e35831a2.css",
+    "static/js/main.bc792671.js"
   ]
 }
