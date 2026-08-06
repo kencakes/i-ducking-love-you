@@ -47,12 +47,15 @@ import macQuack from "./audio/mac-quack.mp3";
 import duckRick from "./audio/rick-duck.mp3";
 
 import CasinoModal from "./components/casino/CasinoModal";
+import FutureModal from "./components/future/FutureModal";
 import MemoriesModal from "./components/memories/MemoriesModal";
 import DailyCompliment from "./components/DailyCompliment";
 import DailyDuckFact from "./components/DailyDuckFact";
 import Countdown from "./components/Countdown";
 
+// Data
 import { memories } from "./data/data";
+import { futureGoals } from "./data/data";
 
 // NO messages + corresponding images
 const noMessages = [
@@ -123,6 +126,7 @@ function App() {
   const [notification, setNotification] = useState(null);
   const [actionsOpen, setActionsOpen] = useState(false);
   const [casinoOpen, setCasinoOpen] = useState(false);
+  const [futureOpen, setFutureOpen] = useState(false);
   const [jackpot, setJackpot] = useState(500);
   const [winStreak, setWinStreak] = useState(0);
   const [memoriesOpen, setMemoriesOpen] = useState(false);
@@ -130,6 +134,10 @@ function App() {
   const [coins, setCoins] = useState(() => {
     const savedCoins = localStorage.getItem("coins");
     return savedCoins ? parseInt(savedCoins) : 100;
+  });
+  const [checkedGoals, setCheckedGoals] = useState(() => {
+    const savedGoals = localStorage.getItem("checkedGoals");
+    return savedGoals ? JSON.parse(savedGoals) : [];
   });
 
   useEffect(() => {
@@ -142,6 +150,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem("coins", coins);
   }, [coins]);
+
+  useEffect(() => {
+    localStorage.setItem("checkedGoals", JSON.stringify(checkedGoals));
+  }, [checkedGoals]);
 
   useEffect(() => {
     const savedJackpot = localStorage.getItem("jackpot");
@@ -379,6 +391,9 @@ function App() {
           >
             MEMORIES
           </button>
+          <button className="shop-button" onClick={() => setFutureOpen(true)}>
+            FUTURE
+          </button>
           {achievement && <div className="achievement">{achievement}</div>}
           {shopOpen && (
             <div className="shop-overlay">
@@ -501,6 +516,13 @@ function App() {
         memoriesOpen={memoriesOpen}
         setMemoriesOpen={setMemoriesOpen}
         memories={memories}
+      />
+      <FutureModal
+        futureOpen={futureOpen}
+        setFutureOpen={setFutureOpen}
+        futureGoals={futureGoals}
+        checkedGoals={checkedGoals}
+        setCheckedGoals={setCheckedGoals}
       />
     </div>
   );
